@@ -7,20 +7,24 @@ import {environment} from '../../environments/environment';
 @Injectable()
 export class ProductService {
   baseUrl = '';
-  productToUpdate = null;
 
   constructor(private http: HttpClient) {
-    this.baseUrl = environment.APIEndpoint;
+    this.baseUrl = environment.APIEndpoint; // API URL
   }
 
-  @Output() change: EventEmitter<Product> = new EventEmitter();
+  @Output() change: EventEmitter<Product> = new EventEmitter(); // Emitter when some value changed
 
-  @Output() reload: EventEmitter<any> = new EventEmitter();
-
+  /**
+   * Get all products
+   */
   getAll() {
     return this.http.get<Product>(this.baseUrl);
   }
 
+  /**
+   * Get product by id
+   * @param id Identification
+   */
   get(id: number) {
     return this.http.get<Product>(this.baseUrl + '/' + id);
   }

@@ -4,7 +4,6 @@ import {FormOrderComponent} from '../form-order/form-order.component';
 
 export interface DialogData {
   model: any,
-  commerce: any,
   product: any
 }
 
@@ -15,17 +14,7 @@ export interface DialogData {
 })
 export class ModalCreateComponent implements OnInit {
 
-  @ViewChild(FormOrderComponent, {static: true}) formOrder: FormOrderComponent;
-
-
-  @Input() headerTitle = `Information`;
-  @Input() message = `Information`;
-  @Input() classHeader = ``;
-  @Input() columns;
-  @Input() items;
-  @Input() labels;
-  @Input() subLabels;
-
+  @ViewChild(FormOrderComponent, {static: true}) formOrder: FormOrderComponent; // Child component (form)
 
   constructor(public dialogRef: MatDialogRef<ModalCreateComponent>,
               @Inject(MAT_DIALOG_DATA) public data: DialogData) { }
@@ -33,9 +22,10 @@ export class ModalCreateComponent implements OnInit {
   ngOnInit() {
   }
 
+  /**
+   * Submit form child
+   */
   submit(){
-
-
     if(this.formOrder.ownerForm.valid){
       this.formOrder.onSubmit(this.formOrder.ownerForm.value);
     }

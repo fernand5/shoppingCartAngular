@@ -30,13 +30,14 @@ export class FormOrderComponent implements OnInit {
 
   @ViewChild(TableGenericComponent, {static: true}) table: TableGenericComponent;
 
+  // Formgroup that will be displayed
   public ownerForm: FormGroup;
 
-  fileIdentificationSelected: File;
-  imageIdentificationToUpload: FormData;
-  products: Product[];
+  fileIdentificationSelected: File; // File to storage pdf
+  imageIdentificationToUpload: FormData; // Form data to upload
+  products: Product[]; // Products array
 
-
+  // Items and their types for table configuration
   itemsType = [
     {
       index: 'descripcion',
@@ -55,32 +56,32 @@ export class FormOrderComponent implements OnInit {
     }
 
   ];
+  
+  // Columns to display on table
   displayedColumns: string[] = ['descripcion', 'miniatura', 'precio'];
 
 
+  // Cities to select
   cities = [
     {value: 'Medellin'},
     {value: 'Envigado'},
     {value: 'Sabaneta'}
   ];
+  
+  @Input() model: any; // Init model
 
-
-  @Input() header = `Information`;
-  @Input() model: any;
-  @Input() commerceId: any;
-  @Input() idToProductUpdate: any;
-
-  @ViewChild('product', { static: true, read: NgForm }) form: any;
+  @ViewChild('product', { static: true, read: NgForm }) form: any; // Form that will be controlled for parent component
 
   constructor(private dialogRef: MatDialog,
               private toastr: ToastrService,
               private cartService: CartService,
               private orderService: OrderService) {
     this.imageIdentificationToUpload = new FormData();
-
-
   }
 
+  /**
+   * Init the formgroup with their validations
+   */
   ngOnInit() {
     this.ownerForm = new FormGroup({
       name: new FormControl('', [Validators.required, Validators.maxLength(60)]),
@@ -94,21 +95,27 @@ export class FormOrderComponent implements OnInit {
     this.table.dataSource = new MatTableDataSource(this.products);
   }
 
-
+  /**
+   * Validation of formgroup to display errors
+   * @param controlName control on formgroup
+   * @param errorName text to display
+   */
   public hasError = (controlName: string, errorName: string) =>{
     return this.ownerForm.controls[controlName].hasError(errorName);
   }
 
-
+  /**
+   * Proccess to validate file
+   * @param event File
+   */
   onFileProductChanged(event) {
     const uploadData = new FormData();
 
-    const allowedExtensions = ['PDF', 'pdf'];
+    const allowedExtensions = ['PDF', 'pdf']; // Formats allowed
     const fileExtension = event.target.files[0].name.split('.').pop();
 
     if (allowedExtensions.includes(fileExtension)) {
-debugger;
-      if (event.target.files[0].size < 1000000) {
+      if (event.target.files[0].size < 1000000) { // 1MB max
 
         if (event.target.files && event.target.files[0]) {
           const reader = new FileReader();
@@ -119,30 +126,27 @@ debugger;
 
           reader.readAsDataURL(event.target.files[0]);
         }
-
         this.imageIdentificationToUpload.append('myFile', event.target.files[0], event.target.files[0].name);
         this.imageIdentificationToUpload.append('file', event.target.files[0]);
         this.fileIdentificationSelected = event.target.files[0];
 
-
       } else {
         this.toastr.error('Tamaño máximo excedido', 'Imagen');
-
       }
     } else {
       this.toastr.error('Formato inválido', 'Imagen');
-
     }
 
   }
 
   onSubmit (values) {
 
-    if(!this.imageIdentificationToUpload.has('myFile') && this.model.detailPictureUrl == null){
+    // Validate that image was uploaded
+    if(!this.imageIdentificationToUpload.has('myFile')){
       this.toastr.error('Imagen de la cedula es requerida', 'Cédula');
     }else{
-      values.identification = this.model.identification;
-      values.products = this.products;
+      values.identification = this.model.identification; // add image
+      values.products = this.products; // add products
       this.cartService.emptyCart();
       this.orderService.addOrder(values);
       this.dialogRef.closeAll();
@@ -150,17 +154,5 @@ debugger;
       this.toastr.success('Se agregó un pedido');
     }
 
-  }
-
-  instructionsChanged(event) {
-    this.model.allowInstructions = event.target.checked;
-  }
-
-  close() {
-    this.dialogRef.closeAll();
-  }
-
-  priceChange() {
-    this.model.taxedPrice = (parseFloat(this.model.price) * 0.16) + parseFloat(this.model.price);
   }
 }

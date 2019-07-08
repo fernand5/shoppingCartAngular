@@ -8,23 +8,19 @@ import {MatTableDataSource} from '@angular/material';
 })
 export class TableGenericComponent implements OnInit {
 
-  dataSource: any;
+  dataSource: any; // MatTableDataSoruce to store values
 
-  @Input() data;
-  @Input() columns;
-  @Input() labels;
-  @Input() header;
-  @Input() subHeader;
-  @Input() itemsType;
-  @Input() actionAdd;
-  @Input() dataIndex;
-  @Input() footerValue;
+  @Input() columns; // Columns to display
+  @Input() header; // Header text
+  @Input() subHeader; // Sub Header text
+  @Input() itemsType; // Configuration of each columns
+  @Input() actionAdd; // Boolean if add button will be displayed
 
-  @Output() callParent = new EventEmitter<string>();
-  @Output() addItemRow = new EventEmitter<string>();
+  @Output() callParent = new EventEmitter<string>(); // Call parent action
+  @Output() addItemRow = new EventEmitter<string>(); // Parent action to add function for each row
+  @Output() viewItemRow = new EventEmitter<string>(); // Parent action to view function
 
-  @Output() addItem = new EventEmitter<string>();
-
+  @Output() addItem = new EventEmitter<string>(); // Call Parent to add element to array
 
   constructor() {
     this.dataSource = new MatTableDataSource();
@@ -33,24 +29,44 @@ export class TableGenericComponent implements OnInit {
   ngOnInit() {
   }
 
-  actionParent(element){
+  /**
+   * Call parent action
+   * @param element Item to parent function
+   */
+  actionParent(element) {
     this.callParent.next(element);
   }
 
-  addRow(element){
+  /**
+   * Call parent action to add
+   * @param element Item to parent function
+   */
+  addRow(element) {
     this.addItemRow.next(element);
   }
 
-  addItemAction(){
+  /**
+   * Call parent action to show element
+   * @param element Item to parent function
+   */
+  viewRow(element) {
+    this.viewItemRow.next(element);
+  }
+
+  /**
+   * Call parent action to add element to array
+   * @param element Item to parent function
+   */
+  addItemAction() {
     this.addItem.next();
   }
 
+  /**
+   * Filter for each element on table
+   * @param filterValue Text to shearch on datasource
+   */
   applyFilter(filterValue: string) {
     this.dataSource.filter = filterValue.trim().toLowerCase();
   }
 
-  getTotalCost() {
-    debugger;
-    return this.data.map(t => t.precio).reduce((acc, value) => acc + value, 0);
-  }
 }

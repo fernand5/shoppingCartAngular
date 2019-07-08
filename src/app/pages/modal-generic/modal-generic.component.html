@@ -4,14 +4,15 @@
   <img *ngIf="data.image" [src]="data.image" />
 
   <app-table-generic
-    [style.display]="!data.image ? 'block' : 'none'"
-    [data]="products"
+    [style.display]="data.products ! && data.products.length > 0 ? 'block' : 'none'"
     [columns]="displayedColumns"
     [itemsType]="itemsType"
-    [footerValue]="true"
   >
-  </app-table-generic></mat-dialog-content>
+  </app-table-generic>
+  <h2 *ngIf="data.products && data.products.length == 0">Carrito Vacío</h2>
+</mat-dialog-content>
 
 <div mat-dialog-actions>
   <button mat-button [mat-dialog-close]="data.image" cdkFocusInitial>Ok</button>
+  <button mat-button *ngIf="data.products && data.products.length > 0" [mat-dialog-close]="data.image"  [routerLink]="'orders'" cdkFocusInitial>Hacer un pedido</button>
 </div>

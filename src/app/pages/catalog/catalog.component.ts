@@ -16,7 +16,10 @@ export class CatalogComponent implements OnInit {
 
   @ViewChild(TableGenericComponent, {static: true}) table: TableGenericComponent;
 
+  // Products array
   products: Product;
+
+  // Items and their types for table configuration
   itemsType = [
     {
       index: 'descripcion',
@@ -69,6 +72,9 @@ export class CatalogComponent implements OnInit {
     this.products = new Product();
   }
 
+  /**
+   * Fill dataSource table with values from products API
+   */
   ngOnInit() {
     this.productService.getAll().subscribe(products => {
       // @ts-ignore
@@ -81,6 +87,10 @@ export class CatalogComponent implements OnInit {
     this.pageSizeOptions = setPageSizeOptionsInput.split(',').map(str => +str);
   }
 
+  /**
+   * Function to show some modal with a big image
+   * @param index Item to show in big modal
+   */
   openModal(index) {
     debugger;
     const _this = this;
@@ -92,14 +102,17 @@ export class CatalogComponent implements OnInit {
 
       dialogRef.afterClosed().subscribe(result => {
         console.log('The dialog was closed');
-        console.log(result);
       });
     });
   }
 
-  addItemCart(item){
+  /**
+   * Add item to shopping cart function
+   * @param item Product
+   */
+  addItemCart(item) {
     this.cartService.addItem(item);
-    this.toastr.success(item.descripcion,'Se agrego un producto a tu carrito')
+    this.toastr.success(item.descripcion, 'Se agrego un producto a tu carrito');
   }
 
 }

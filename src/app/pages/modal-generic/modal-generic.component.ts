@@ -7,6 +7,7 @@ import {TableGenericComponent} from '../table-generic/table-generic.component';
 export interface DialogData {
   image: string;
   name: string;
+  products: any;
 }
 
 @Component({
@@ -16,8 +17,6 @@ export interface DialogData {
 })
 export class ModalGenericComponent implements OnInit {
   @ViewChild(TableGenericComponent, {static: true}) table: TableGenericComponent;
-
-  products: Product[];
 
   itemsType = [
     {
@@ -44,21 +43,11 @@ export class ModalGenericComponent implements OnInit {
     @Inject(MAT_DIALOG_DATA) public data: DialogData) {}
 
   ngOnInit() {
+    this.table.dataSource = new MatTableDataSource(this.data.products);
     debugger;
-    this.products = this.cartService.getAll();
-
-    this.table.dataSource = new MatTableDataSource(this.products);
-
-    this.getTotalCost();
-
 
   }
 
-  /** Gets the total cost of all transactions. */
-  getTotalCost() {
-    console.log(this.products.map(t => t.precio).reduce((acc, value) => acc + value, 0));
-    // return this.products.map(t => t.precio).reduce((acc, value) => acc + value, 0);
-  }
 
 
 }

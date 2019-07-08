@@ -7,13 +7,38 @@ import { CatalogComponent } from './pages/catalog/catalog.component';
 import {HttpClientModule} from '@angular/common/http';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {
+  MatAutocompleteModule,
   MatBadgeModule,
-  MatButtonModule, MatCardModule,
-  MatCheckboxModule, MatDatepickerModule,
-  MatDialogModule, MatFormFieldControl,
-  MatFormFieldModule, MatIconModule, MatInputModule, MatListModule, MatNativeDateModule,
-  MatPaginatorModule, MatSelectModule,
-  MatSidenavModule, MatToolbarModule
+  MatButtonModule,
+  MatButtonToggleModule,
+  MatCardModule,
+  MatCheckboxModule,
+  MatChipsModule,
+  MatDatepickerModule,
+  MatDialogModule,
+  MatExpansionModule,
+  MatFormFieldControl,
+  MatFormFieldModule,
+  MatGridListModule,
+  MatIconModule,
+  MatInputModule,
+  MatListModule,
+  MatMenuModule,
+  MatNativeDateModule,
+  MatPaginatorModule,
+  MatProgressBarModule,
+  MatProgressSpinnerModule,
+  MatRadioModule,
+  MatRippleModule,
+  MatSelectModule,
+  MatSidenavModule,
+  MatSliderModule,
+  MatSlideToggleModule,
+  MatSnackBarModule,
+  MatSortModule, MatStepperModule,
+  MatTabsModule,
+  MatToolbarModule,
+  MatTooltipModule
 } from '@angular/material';
 import {MatTableModule} from '@angular/material/table';
 import {NgModule} from '@angular/core';
@@ -27,6 +52,7 @@ import { FormOrderComponent } from './pages/form-order/form-order.component';
 import {ToastrModule} from 'ngx-toastr';
 import {OrderService} from './_services/order.service';
 import {CartService} from './_services/cart.service';
+import {SimpleNotificationsModule} from 'angular2-notifications';
 
 
 @NgModule({
@@ -61,8 +87,38 @@ import {CartService} from './_services/cart.service';
     MatNativeDateModule,
     MatInputModule,
     ToastrModule.forRoot(),
+    MatAutocompleteModule,
+    MatButtonModule,
+    MatButtonToggleModule,
     MatCardModule,
+    MatCheckboxModule,
+    MatChipsModule,
+    MatDatepickerModule,
+    MatDialogModule,
+    MatExpansionModule,
+    MatGridListModule,
+    MatIconModule,
+    MatInputModule,
+    MatListModule,
+    MatMenuModule,
+    MatNativeDateModule,
+    MatPaginatorModule,
+    MatProgressBarModule,
+    MatProgressSpinnerModule,
+    MatRadioModule,
+    MatRippleModule,
     MatSelectModule,
+    MatSidenavModule,
+    MatSliderModule,
+    MatSlideToggleModule,
+    MatSnackBarModule,
+    MatSortModule,
+    MatTableModule,
+    MatTabsModule,
+    MatToolbarModule,
+    MatTooltipModule,
+    MatStepperModule,
+    SimpleNotificationsModule.forRoot(),
     MatBadgeModule
   ],
   exports:[

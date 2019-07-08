@@ -8,22 +8,27 @@ import {Product} from '../_models/product';
 @Injectable()
 export class CartService {
   baseUrl = '';
-  productToUpdate = null;
-
   constructor(private http: HttpClient) {
-    this.baseUrl = environment.APIEndpoint;
+    this.baseUrl = environment.APIEndpoint; // API URL
   }
 
-  @Output() change: EventEmitter<Order> = new EventEmitter();
+  @Output() change: EventEmitter<Order> = new EventEmitter(); // Emitter when some value changed
 
-  @Output() reload: EventEmitter<any> = new EventEmitter();
-
+  /**
+   * Get all shopping cart
+   * @param product Item to add
+   */
   getAll() {
-    if(localStorage.getItem('cart') == null){
+    if(localStorage.getItem('cart') === null){
       return [];
     }
     return JSON.parse(localStorage.getItem('cart'));
   }
+
+  /**
+   * Add product to shopping cart
+   * @param product Item to add
+   */
   addItem(product: Product){
     let products = JSON.parse(localStorage.getItem('cart'));
     if(products == null){
@@ -34,12 +39,11 @@ export class CartService {
     this.change.emit();
   }
 
-  newOrder(){
-    this.change.emit();
-  }
-
+  /**
+   * Remove cart from localstorage
+   */
   emptyCart(){
-    localStorage.setItem('cart', null);
+    localStorage.removeItem('cart');
   }
 
 }

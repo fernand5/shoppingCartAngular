@@ -10,7 +10,7 @@ import {MatDialog, MatTableDataSource} from '@angular/material';
   styleUrls: ['./sidenav.component.scss']
 })
 export class SidenavComponent implements OnDestroy, OnInit {
-
+  // Quantity on cart
   quantityCart: number;
 
   constructor(changeDetectorRef: ChangeDetectorRef,
@@ -25,15 +25,17 @@ export class SidenavComponent implements OnDestroy, OnInit {
 
   mobileQuery: MediaQueryList;
 
+  // Side bar configuracion array
   fillerNav = [
-    {id: '11', path: '/catalog', title: 'Catálogo', icon: 'note', class: '', badge: '', badgeClass: '', isExternalLink: false, submenu: [] },
-    {id: '3', path: '/orders', title: 'Pedidos', icon: 'note', class: '', badge: '', badgeClass: '', isExternalLink: false, submenu: [] },
+    {path: '/catalog', title: 'Catálogo', icon: 'note', class: '', badge: '', badgeClass: '', isExternalLink: false, submenu: [] },
+    { path: '/orders', title: 'Pedidos', icon: 'note', class: '', badge: '', badgeClass: '', isExternalLink: false, submenu: [] },
   ];
 
   private _mobileQueryListener: () => void;
 
-  shouldRun = [/(^|\.)plnkr\.co$/, /(^|\.)stackblitz\.io$/].some(h => h.test(window.location.host));
-
+  /**
+   * Init with values for shopping cart badge
+   */
   ngOnInit() {
     this.quantityCart = this.cartService.getAll().length;
     this.cartService.change.subscribe(result=>{
@@ -41,14 +43,21 @@ export class SidenavComponent implements OnDestroy, OnInit {
     });
   }
 
+  /**
+   * Detroy mobileQuery media
+   */
   ngOnDestroy(): void {
     this.mobileQuery.removeListener(this._mobileQueryListener);
   }
 
+  /**
+   * Show items on shopping cart with material modal
+   */
   showCart() {
+    const _this = this;
     const dialogRef = this.dialog.open(ModalGenericComponent, {
       width: '750px',
-      data: {}
+      data: {products: _this.cartService.getAll()}
     });
 
     dialogRef.afterClosed().subscribe(result => {

@@ -16,7 +16,6 @@ export class OrdersComponent implements OnInit {
 
   @ViewChild(TableGenericComponent, {static: true}) table: TableGenericComponent;
 
-
   orders: Order[];
   itemsType = [
     {
@@ -51,9 +50,16 @@ export class OrdersComponent implements OnInit {
       action: true,
       customLabel: 'Descargar'
     },
+    {
+      index: 'products',
+      title: 'Productos',
+      type: 'text',
+      viewRowAction: true,
+      customLabel: 'Ver'
+    },
 
   ];
-  displayedColumns: string[] = ['id', 'name', 'dateOfBirth', 'address', 'city', 'identification'];
+  displayedColumns: string[] = ['id', 'name', 'dateOfBirth', 'address', 'city', 'identification', 'products'];
   // MatPaginator Inputs
   length = 100;
   pageSize = 10;
@@ -91,7 +97,7 @@ export class OrdersComponent implements OnInit {
   }
 
   download(item) {
-debugger;    let link = document.createElement('a');
+    let link = document.createElement('a');
     link.download = 'cedula';
     link.href = item.identification;
     document.body.appendChild(link);
@@ -99,6 +105,19 @@ debugger;    let link = document.createElement('a');
     document.body.removeChild(link);
     // delete link;
 
+  }
+
+  viewRow(index){
+    debugger;
+    const dialogRef = this.dialog.open(ModalGenericComponent, {
+      width: '750px',
+      data: {products: index.products}
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log('The dialog was closed');
+      console.log(result);
+    });
   }
 
 }

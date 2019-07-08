@@ -7,19 +7,24 @@ import {Order} from '../_models/order';
 @Injectable()
 export class OrderService {
   baseUrl = '';
-  productToUpdate = null;
 
   constructor(private http: HttpClient) {
-    this.baseUrl = environment.APIEndpoint;
+    this.baseUrl = environment.APIEndpoint; // API URL
   }
 
-  @Output() change: EventEmitter<Order> = new EventEmitter();
+  @Output() change: EventEmitter<Order> = new EventEmitter(); // Emitter when some value changed
 
-  @Output() reload: EventEmitter<any> = new EventEmitter();
-
+  /**
+   * Get all orders from localstorage
+   */
   getAll() {
     return JSON.parse(localStorage.getItem('orders'));
   }
+
+  /**
+   * Add order to localstorage
+   * @param order Item to add
+   */
   addOrder(order: Order){
     let orders = JSON.parse(localStorage.getItem('orders'));
     if(orders == null){
@@ -32,6 +37,9 @@ export class OrderService {
     localStorage.setItem('orders', JSON.stringify(orders));
   }
 
+  /**
+   * New order was put
+   */
   newOrder(){
     this.change.emit();
   }
