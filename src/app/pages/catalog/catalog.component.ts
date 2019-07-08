@@ -77,6 +77,9 @@ export class CatalogComponent implements OnInit {
    */
   ngOnInit() {
     this.productService.getAll().subscribe(products => {
+
+      // filter for available
+      products = <Product>products.filter(product => product.cantidadDisponible > 0)
       // @ts-ignore
       this.table.dataSource = new MatTableDataSource(products);
 
@@ -92,7 +95,6 @@ export class CatalogComponent implements OnInit {
    * @param index Item to show in big modal
    */
   openModal(index) {
-    debugger;
     const _this = this;
     this.productService.get(index.idProducto).subscribe(product => {
       const dialogRef = _this.dialog.open(ModalGenericComponent, {

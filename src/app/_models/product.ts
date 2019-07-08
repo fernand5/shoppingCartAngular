@@ -1,4 +1,4 @@
-export class Product {
+export class Product extends Array {
   cantidadDisponible: number;
   categoria: string;
   descripcion: string;
@@ -6,4 +6,5 @@ export class Product {
   imagen: string;
   miniatura: string;
   precio: number;
+
 }
