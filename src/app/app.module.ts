@@ -3,7 +3,6 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import {ProductService} from './_services/product.service';
-import {GlobalService} from './_services/global.service';
 import { CatalogComponent } from './pages/catalog/catalog.component';
 import {HttpClientModule} from '@angular/common/http';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
@@ -73,7 +72,6 @@ import {CartService} from './_services/cart.service';
   ],
   providers: [
     ProductService,
-    GlobalService,
     OrderService,
     CartService
   ],
