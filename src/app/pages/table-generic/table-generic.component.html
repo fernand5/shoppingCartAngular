@@ -24,10 +24,10 @@
 
               <!--TEXTO-->
               <ng-template [ngIf]="item.type == 'text'">
-                <a *ngIf="item.action" (click)="actionParent(element)">
+                <a *ngIf="item.action" mat-button (click)="actionParent(element)">
                   {{item.customLabel ? item.customLabel : element[item.index]}}
                 </a>
-                <a *ngIf="item.addRowAction" (click)="addRow(element)">
+                <a *ngIf="item.addRowAction" mat-button (click)="addRow(element)">
                   {{item.customLabel ? item.customLabel : element[item.index]}}
                 </a>
                 <ng-template [ngIf]="!item.action">
@@ -50,10 +50,10 @@
 
               <!--MONEDA-->
               <ng-template [ngIf]="item.type == 'currency'">
-                <a *ngIf="item.action" (click)="actionParent(element)">
+                <a *ngIf="item.action" mat-button (click)="actionParent(element)">
                   {{item.customLabel ? item.customLabel : element[item.index] | currency}}
                 </a>
-                <a *ngIf="item.addRowAction" (click)="addRow(element)">
+                <a *ngIf="item.addRowAction" mat-button (click)="addRow(element)">
                   {{item.customLabel ? item.customLabel : element[item.index] | currency}}
                 </a>
                 <ng-template [ngIf]="!item.action">
@@ -63,10 +63,10 @@
 
               <!--NUMERO-->
               <ng-template [ngIf]="item.type == 'number'">
-                <a *ngIf="item.action" (click)="actionParent(element)">
+                <a *ngIf="item.action" mat-button (click)="actionParent(element)">
                   {{item.customLabel ? item.customLabel : element[item.index] | number}}
                 </a>
-                <a *ngIf="item.addRowAction" (click)="addRow(element)">
+                <a *ngIf="item.addRowAction" mat-button (click)="addRow(element)">
                   {{item.customLabel ? item.customLabel : element[item.index] | number}}
                 </a>
                 <ng-template [ngIf]="!item.action">
@@ -76,10 +76,10 @@
 
               <!--FECHA-->
               <ng-template [ngIf]="item.type == 'date'">
-                <a *ngIf="item.action" (click)="actionParent(element)">
+                <a *ngIf="item.action" mat-button (click)="actionParent(element)">
                   {{item.customLabel ? item.customLabel : element[item.index] |  date: 'yyyy-MM-dd'}}
                 </a>
-                <a *ngIf="item.addRowAction" (click)="addRow(element)">
+                <a *ngIf="item.addRowAction" mat-button (click)="addRow(element)">
                   {{item.customLabel ? item.customLabel : element[item.index] |  date: 'yyyy-MM-dd'}}
                 </a>
                 <ng-template [ngIf]="!item.action">

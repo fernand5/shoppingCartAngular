@@ -19,6 +19,9 @@ export class CartService {
   @Output() reload: EventEmitter<any> = new EventEmitter();
 
   getAll() {
+    if(localStorage.getItem('cart') == null){
+      return [];
+    }
     return JSON.parse(localStorage.getItem('cart'));
   }
   addItem(product: Product){
