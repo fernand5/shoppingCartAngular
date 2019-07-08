@@ -1,0 +1,57 @@
+
+
+<app-table-generic
+  [data]="products"
+  [columns]="displayedColumns"
+  [itemsType]="itemsType"
+>
+</app-table-generic>
+
+<form [formGroup]="ownerForm" autocomplete="off" novalidate (ngSubmit)="onSubmit(ownerForm.value)" fxLayout="column wrap"
+      fxLayoutAlign="center center" fxLayoutGap="10px">
+  <mat-card-content>
+    <mat-form-field>
+      <input matInput type="text" placeholder="Nombre" formControlName="name" id="name">
+      <mat-hint align="end">No mas de 60 caracteres</mat-hint>
+      <mat-error *ngIf="hasError('name', 'required')">Nombre es requerido</mat-error>
+      <mat-error *ngIf="hasError('name', 'maxlength')">Escribiste mas de 60 caracteres</mat-error>
+    </mat-form-field>
+
+    <mat-form-field>
+      <input matInput [matDatepicker]="picker" placeholder="Fecha de nacimiento" formControlName="dateOfBirth" id="dateOfBirth"
+             readonly (click)="picker.open()">
+      <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+      <mat-datepicker #picker></mat-datepicker>
+    </mat-form-field>
+
+    <mat-form-field>
+      <textarea matInput type="text" placeholder="Dirección" formControlName="address"></textarea>
+      <mat-hint align="end">No mas de 100 caracteres</mat-hint>
+      <mat-error *ngIf="hasError('address', 'required')">Address is required</mat-error>
+      <mat-error *ngIf="hasError('address', 'maxlength')">You have more than 100 characters</mat-error>
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>Ciudades</mat-label>
+      <mat-select formControlName="city">
+        <mat-option *ngFor="let city of cities" [value]="city.value">
+          {{city.value}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <div class="row">
+      <mat-label>Cargar Cédula: </mat-label>
+    </div>
+    <input type="file" class="custom-file-input" id="detailProductPicture" accept="application/pdf" aria-describedby="fileHelp" multiple
+           (change)="onFileProductChanged($event)">
+    <div class="row">
+      <mat-hint align="end">Formato PDF. Tamaño máximo 1mb</mat-hint>
+    </div>
+
+
+
+
+  </mat-card-content>
+
+</form>

@@ -1,0 +1,28 @@
+<div class="example-container" [class.example-is-mobile]="mobileQuery.matches" >
+  <mat-toolbar color="primary" class="example-toolbar">
+    <button mat-icon-button (click)="snav.toggle()"><mat-icon>menu</mat-icon></button>
+    <button mat-icon-button (click)="showCart()"><mat-icon matBadgeColor="accent" matBadge="{{quantityCart}}">shopping_cart</mat-icon></button>
+
+  </mat-toolbar>
+
+  <mat-sidenav-container class="example-sidenav-container"
+                         [style.marginTop.px]="mobileQuery.matches ? 56 : 0">
+    <mat-sidenav #snav [mode]="mobileQuery.matches ? 'over' : 'side'"
+                 [fixedInViewport]="mobileQuery.matches" fixedTopGap="56">
+
+      <mat-nav-list>
+        <mat-list-item *ngFor="let folder of fillerNav" [routerLink]="folder.path">
+            <mat-icon  mat-list-icon>{{folder.icon}}</mat-icon>
+            <h4 mat-line>{{folder.title}}</h4>
+        </mat-list-item>
+
+      </mat-nav-list>
+
+    </mat-sidenav>
+
+    <mat-sidenav-content>
+      <router-outlet></router-outlet>
+    </mat-sidenav-content>
+  </mat-sidenav-container>
+</div>
+

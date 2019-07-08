@@ -1,0 +1,14 @@
+<div class="modal-header">
+  <h3 *ngIf="data.product==null">Agregar pedido</h3>
+  <h3 *ngIf="data.product!=null">Actualizar {{data.model.title}}</h3>
+</div>
+<mat-dialog-content>
+  <app-form-order [model]="data.model" [commerceId]="data.commerce" [idToProductUpdate]="data.product"  header="Editar"></app-form-order>
+</mat-dialog-content>
+
+<div mat-dialog-actions align="end">
+  <button mat-button (click)="submit()" [disabled]="!formOrder.ownerForm.valid">Crear</button>
+
+  <button mat-button (click)="dialogRef.close()">Cancelar</button>
+
+</div>

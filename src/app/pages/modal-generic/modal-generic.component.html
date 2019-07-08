@@ -1,0 +1,17 @@
+<h1 mat-dialog-title>Producto: {{data.name}}</h1>
+
+<mat-dialog-content>
+  <img *ngIf="data.image" [src]="data.image" />
+
+  <app-table-generic
+    [style.display]="!data.image ? 'block' : 'none'"
+    [data]="products"
+    [columns]="displayedColumns"
+    [itemsType]="itemsType"
+    [footerValue]="true"
+  >
+  </app-table-generic></mat-dialog-content>
+
+<div mat-dialog-actions>
+  <button mat-button [mat-dialog-close]="data.image" cdkFocusInitial>Ok</button>
+</div>

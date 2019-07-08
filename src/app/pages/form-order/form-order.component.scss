@@ -1,0 +1,223 @@
+.bg-dashboard{
+  margin-left: 30px;
+  margin-right: 30px;
+}
+
+h3,h4,h5,h6{
+
+}
+
+h2{
+  color: #fc9b48;
+}
+p{
+  color: #8e8e8e;
+  margin-bottom: 0;
+}
+.custom-h2{
+  border-right: solid 2px #848484;
+  margin-left: 1%;
+  margin-right: 1%;
+}
+.col-custom{
+  margin-right: 1%;
+  padding: 3%;
+  background-color: white;
+}
+@media (min-width: 768px){
+  .col-md-6{
+    max-width: 49%;
+  }
+}
+.row{
+  margin-bottom: 1%;
+  margin-top: 1%;
+}
+label{
+  color: #212529;
+  margin-bottom: 0;
+}
+h3{
+  color: #000;
+}
+.custom-file-input ~ .custom-file-label::after {
+  content: "Seleccionar";
+}
+.btn-erase{
+  color: #000;
+  border-color: #FFF;
+  background-color: #FFF;
+}
+.btn-erase:hover{
+  color: #FFF;
+  border-color: #000000;
+  background-color: #000000;
+}
+
+.btn-erase:not(:disabled):not(.disabled):active, .btn-erase:not(:disabled):not(.disabled).active, .show > .btn-erase.dropdown-toggle {
+  border-color: #000;
+  background-color: #000;
+}
+
+.btn-erase:focus, .btn-erase.focus {
+  -webkit-box-shadow: 0 0 0 0.2rem rgba(106, 97, 102, 0.68);
+  box-shadow: 0 0 0 0.2rem rgb(135, 116, 126);
+}
+.table td, .table thead th, .table th {
+  color: #000000;
+}
+.btn-group{
+  margin-bottom: 2%;
+  margin-top: 2%;
+}
+
+/* The container */
+.container-check {
+  display: block;
+  position: relative;
+  padding-left: 35px;
+  cursor: pointer;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+/* Hide the browser's default checkbox */
+.container-check input {
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+}
+
+/* Create a custom checkbox */
+.checkmark {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 20px;
+  width: 20px;
+  border-radius: 6px;
+  background-color: #eee;
+}
+
+/* On mouse-over, add a grey background color */
+.container-check:hover input ~ .checkmark {
+  background-color: #ccc;
+}
+
+/* When the checkbox is checked, add a blue background */
+.container-check input:checked ~ .checkmark {
+  background-color: #fc9b48;
+}
+
+/* Create the checkmark/indicator (hidden when not checked) */
+.checkmark:after {
+  content: "";
+  position: absolute;
+  display: none;
+}
+
+/* Show the checkmark when checked */
+.container-check input:checked ~ .checkmark:after {
+  display: block;
+}
+
+/* Style the checkmark/indicator */
+.container-check .checkmark:after {
+  left: 8px;
+  top: 3px;
+  width: 5px;
+  height: 13px;
+  border: solid white;
+  border-width: 0 2px 2px 0;
+  -webkit-transform: rotate(45deg);
+  -ms-transform: rotate(45deg);
+  transform: rotate(45deg);
+}
+.btn-secondary{
+  background-color: #ffffff;
+}
+.btn-secondary:hover{
+  color: #545b62;
+}
+.imageMenu, .imageProduct{
+  height: 140px;
+  width: 243px;
+}
+
+.background-mock{
+  object-fit: cover;
+  width: 100%;
+  height: 600px;
+}
+
+img {
+  display: block;
+}
+
+.thumbnail {
+  position: relative;
+  display: inline-block;
+}
+
+.caption {
+  position: absolute;
+  top: 34%;
+  left: 50%;
+  transform: translate( -50%, -50% );
+  text-align: center;
+  color: white;
+  font-weight: bold;
+}
+.custom-img-row{
+  width: 110%;
+}
+.caption p{
+  color: #1a1a1a;
+  text-align: left;
+  font-size: 10px;
+}
+.caption h6{
+  font-size: 8px;
+  text-align: left;
+  color: #787676;
+}
+mat-icon{
+  color: #ffae00;
+  width: 13px;
+  font-size: 16px;
+}
+.detail-picture-phone{
+  width: 100%;
+}
+.detail-mock{
+  //margin-top: 65%;
+}
+.detail-picture-mock{
+  margin-top: 10px;
+  margin-left: 5px;
+  margin-right: 5px;
+}
+.custom-caption{
+  top: 33%;
+}
+.custom-header-buttons-phone mat-icon{
+  position: relative;
+  z-index: 1000000000;
+  color: #ffae00;
+  font-size: 20px;
+}
+.custom-header-buttons-phone{
+  position: fixed;
+  width: 96%;
+  z-index: 100000000;
+  top: 2%;
+}
+.stars-phone{
+  position: relative;
+  text-align: left;
+}
+.static-phone-height{
+  height: 75px;
+}

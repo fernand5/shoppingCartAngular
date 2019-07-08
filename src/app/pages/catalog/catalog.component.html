@@ -1,0 +1,12 @@
+<app-table-generic
+  [data]="products"
+  [columns]="displayedColumns"
+  [itemsType]="itemsType"
+  [header]="'Productos'"
+  [subHeader]="'Catálogo de productos'"
+  (callParent)="openModal($event)"
+  (addItemRow)="addItemCart($event)"
+
+  [dataIndex]="'idProducto'"
+  [actionAdd]="false"
+></app-table-generic>

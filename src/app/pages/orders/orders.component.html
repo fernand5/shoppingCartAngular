@@ -1,0 +1,11 @@
+
+<app-table-generic
+  [data]="orders"
+  [columns]="displayedColumns"
+  [itemsType]="itemsType"
+  [header]="'Pedidos'"
+  [subHeader]="'Lista de pedidos'"
+  (callParent)="download($event)"
+  (addItem)="addItem()"
+  [actionAdd]="true"
+></app-table-generic>
