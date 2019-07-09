@@ -57,7 +57,7 @@ export class SidenavComponent implements OnDestroy, OnInit {
     const _this = this;
     const dialogRef = this.dialog.open(ModalGenericComponent, {
       width: '750px',
-      data: {products: _this.cartService.getAll()}
+      data: {products: _this.cartService.getAll(), actions: true}
     });
 
     dialogRef.afterClosed().subscribe(result => {

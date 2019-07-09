@@ -111,7 +111,7 @@ export class OrdersComponent implements OnInit {
     debugger;
     const dialogRef = this.dialog.open(ModalGenericComponent, {
       width: '750px',
-      data: {products: index.products}
+      data: {products: index.products, actions: false}
     });
 
     dialogRef.afterClosed().subscribe(result => {

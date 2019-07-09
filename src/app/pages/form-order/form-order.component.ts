@@ -53,12 +53,23 @@ export class FormOrderComponent implements OnInit {
       index: 'precio',
       title: 'Precio',
       type: 'currency',
+    },
+    {
+      index: 'buttons',
+      title: 'Acciones',
+      type: 'buttons',
+      buttons: [
+        {
+          removeRowAction: true,
+          icon: 'delete',
+        }
+      ],
     }
 
   ];
   
   // Columns to display on table
-  displayedColumns: string[] = ['descripcion', 'miniatura', 'precio'];
+  displayedColumns: string[] = ['descripcion', 'miniatura', 'precio', 'buttons'];
 
 
   // Cities to select
@@ -93,6 +104,10 @@ export class FormOrderComponent implements OnInit {
     this.products = this.cartService.getAll();
 
     this.table.dataSource = new MatTableDataSource(this.products);
+    this.cartService.change.subscribe(result => {
+      this.products = this.cartService.getAll();
+      this.table.dataSource = new MatTableDataSource(this.cartService.getAll());
+    });
   }
 
   /**
@@ -153,6 +168,15 @@ export class FormOrderComponent implements OnInit {
       this.orderService.newOrder();
       this.toastr.success('Se agregó un pedido');
     }
+  }
+
+  /**
+   * remove item to shopping cart function
+   * @param item Product
+   */
+  removeItemCart(item) {
+    this.cartService.removeItem(item.id);
+
 
   }
 }

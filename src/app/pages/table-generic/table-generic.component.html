@@ -102,6 +102,22 @@
               {{element[item.index] |  date: 'yyyy-MM-dd'}}
             </ng-template>
           </ng-template>
+
+          <!--ACCIONES-->
+          <ng-template [ngIf]="item.type == 'buttons'">
+            <ng-container *ngFor="let button of item.buttons">
+              <a *ngIf="button.addRowAction" mat-button (click)="addRow(element)">
+                <mat-icon>{{button.icon}}</mat-icon>
+              </a>
+              <a *ngIf="button.viewRowAction" mat-button (click)="viewRow(element)">
+                <mat-icon>{{button.icon}}</mat-icon>
+              </a>
+              <a *ngIf="button.removeRowAction" mat-button (click)="removeItem(element)">
+                <mat-icon>{{button.icon}}</mat-icon>
+              </a>
+            </ng-container>
+
+          </ng-template>
         </mat-cell>
       </ng-container>
 

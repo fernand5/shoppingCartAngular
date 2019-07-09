@@ -48,15 +48,21 @@ export class CatalogComponent implements OnInit {
       type: 'number'
     },
     {
-      index: 'addToCart',
-      title: 'Agregar al carrito',
-      type: 'text',
+      index: 'buttons',
+      title: 'Acciones',
+      type: 'buttons',
+      buttons: [
+        {
+          addRowAction: true,
+          icon: 'add_shopping_cart',
+        }
+      ],
       addRowAction: true,
       customLabel: 'Agregar',
-    },
+    }
 
   ];
-  displayedColumns: string[] = ['descripcion', 'categoria', 'miniatura', 'precio', 'cantidadDisponible', 'addToCart'];
+  displayedColumns: string[] = ['descripcion', 'categoria', 'miniatura', 'precio', 'cantidadDisponible',  'buttons'];
   // MatPaginator Inputs
   length = 100;
   pageSize = 10;
@@ -77,9 +83,6 @@ export class CatalogComponent implements OnInit {
    */
   ngOnInit() {
     this.productService.getAll().subscribe(products => {
-
-      // filter for available
-      products = <Product>products.filter(product => product.cantidadDisponible > 0)
       // @ts-ignore
       this.table.dataSource = new MatTableDataSource(products);
 
@@ -113,8 +116,16 @@ export class CatalogComponent implements OnInit {
    * @param item Product
    */
   addItemCart(item) {
-    this.cartService.addItem(item);
-    this.toastr.success(item.descripcion, 'Se agrego un producto a tu carrito');
+    if(item.cantidadDisponible > 0){
+      this.cartService.addItem(item);
+      this.toastr.success(item.descripcion, 'Se agrego un producto a tu carrito');
+    }else{
+      this.toastr.error(item.descripcion, 'Producto no disponible');
+
+    }
+
   }
+
+
 
 }

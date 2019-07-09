@@ -19,6 +19,7 @@ export class TableGenericComponent implements OnInit {
   @Output() callParent = new EventEmitter<string>(); // Call parent action
   @Output() addItemRow = new EventEmitter<string>(); // Parent action to add function for each row
   @Output() viewItemRow = new EventEmitter<string>(); // Parent action to view function
+  @Output() removeItemRow = new EventEmitter<string>(); // Parent action to delete function
 
   @Output() addItem = new EventEmitter<string>(); // Call Parent to add element to array
 
@@ -51,6 +52,14 @@ export class TableGenericComponent implements OnInit {
    */
   viewRow(element) {
     this.viewItemRow.next(element);
+  }
+
+  /**
+   * Call parent action remove item
+   * @param element Item to parent function
+   */
+  removeItem(element) {
+    this.removeItemRow.next(element);
   }
 
   /**
