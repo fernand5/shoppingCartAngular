@@ -89,10 +89,6 @@ export class CatalogComponent implements OnInit {
     });
   }
 
-  setPageSizeOptions(setPageSizeOptionsInput: string) {
-    this.pageSizeOptions = setPageSizeOptionsInput.split(',').map(str => +str);
-  }
-
   /**
    * Function to show some modal with a big image
    * @param index Item to show in big modal

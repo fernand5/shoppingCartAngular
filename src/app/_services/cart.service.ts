@@ -64,6 +64,8 @@ export class CartService {
    */
   emptyCart(){
     localStorage.removeItem('cart');
+    this.change.emit();
+
   }
 
 }
