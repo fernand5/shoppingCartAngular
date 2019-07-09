@@ -25,14 +25,16 @@ export class OrderService {
    * Add order to localstorage
    * @param order Item to add
    */
-  addOrder(order: Order){
+  addOrder(order: Order) {
+    let nextId = 0;
     let orders = JSON.parse(localStorage.getItem('orders'));
-    if(orders == null){
+    if (orders == null) {
       orders = [];
+      nextId = 1;
     } else {
-      let nextId = orders.length + 1;
-      order.id = nextId;
+      nextId = orders.length + 1;
     }
+    order.id = nextId;
     orders.push(order);
     localStorage.setItem('orders', JSON.stringify(orders));
   }
@@ -40,7 +42,7 @@ export class OrderService {
   /**
    * New order was put
    */
-  newOrder(){
+  newOrder() {
     this.change.emit();
   }
 

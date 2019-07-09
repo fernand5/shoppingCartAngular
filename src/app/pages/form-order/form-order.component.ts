@@ -159,6 +159,8 @@ export class FormOrderComponent implements OnInit {
     // Validate that image was uploaded
     if(!this.imageIdentificationToUpload.has('myFile')){
       this.toastr.error('Imagen de la cedula es requerida', 'Cédula');
+    }else if (this.products.length == 0){
+      this.toastr.error('No tiene productos en su carrito', 'Productos');
     }else{
       values.identification = this.model.identification; // add image
       values.products = this.products; // add products
